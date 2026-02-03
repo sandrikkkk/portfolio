@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alessandro Giovanni Codecà - Portfolio</title>
+    <style>
+        /* CSS Variables for easy theming */
+        :root {
+            --primary-color: #003366; /* Deep Blue for Finance/Business */
+            --secondary-color: #f4f4f9;
+            --text-color: #333;
+            --light-text: #666;
+            --accent-color: #007bff;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Reset & Base Styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-family); color: var(--text-color); line-height: 1.6; background-color: var(--secondary-color); }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* Container */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        /* Header / Hero Section */
+        header { background: #fff; padding: 60px 0 40px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .profile-img {
+            width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
+            border: 4px solid var(--primary-color); margin-bottom: 20px;
+            background-color: #ddd; /* Placeholder color */
+        }
+        h1 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 10px; }
+        .subtitle { font-size: 1.2rem; color: var(--light-text); margin-bottom: 20px; }
+        
+        .contact-info { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 0.95rem; }
+        .contact-item { display: flex; align-items: center; gap: 5px; }
+        .contact-item span { color: var(--accent-color); }
+
+        /* Main Content Grid */
+        .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-top: 40px; margin-bottom: 60px; }
+
+        /* Cards */
+        .card { background: #fff; padding: 30px; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .section-title { font-size: 1.5rem; color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Experience & Education Lists */
+        .timeline-item { margin-bottom: 25px; padding-left: 15px; border-left: 3px solid var(--accent-color); }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .job-title { font-weight: bold; font-size: 1.1rem; color: #222; }
+        .company { font-style: italic; color: var(--light-text); }
+        .date { font-size: 0.85rem; color: var(--accent-color); margin-bottom: 8px; display: block; }
+        .description { font-size: 0.95rem; }
+        .description li { margin-bottom: 5px; position: relative; padding-left: 15px; }
+        .description li::before { content: "•"; position: absolute; left: 0; color: var(--accent-color); }
+
+        /* Skills & Languages */
+        .skill-tag { display: inline-block; background: var(--secondary-color); padding: 5px 10px; border-radius: 4px; margin: 0 5px 5px 0; font-size: 0.9rem; font-weight: 500; }
+        .lang-item { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .lang-level { font-weight: bold; color: var(--primary-color); }
+
+        /* Footer */
+        footer { text-align: center; padding: 20px; color: var(--light-text); font-size: 0.9rem; margin-top: 40px; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <img src="profile.jpg" alt="Alessandro Giovanni Codecà" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
+            
+            <h1>Alessandro Giovanni Codecà</h1>
+            
+            <p class="subtitle">Business Administration Student & Finance Professional</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">📍 Prague, Czech Republic</div>
+                <a href="mailto:alessandro.codeca@outlook.com" class="contact-item">✉️ alessandro.codeca@outlook.com</a>
+                <a href="tel:+420775441798" class="contact-item">📞 +420 775 441 798</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-grid">
+            
+            <section class="left-column">
+                
+                <div class="card">
+                    <h2 class="section-title">About Me</h2>
+                    <p>
+                        I am a motivated and results-oriented business student currently pursuing a Bachelor's degree in Business Administration at the University of Economics in Prague (VŠE). I am passionate about business development, finance, and innovation, and I am eager to apply my skills to real-world projects that combine strategic thinking with practical impact.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h2 class="section-title">Work Experience</h2>
+                    
+                    <div class="timeline-item">
+                        <div class="job-title">Trainee</div>
+                        <div class="company">Partners Financial Services, a.s. - Prague, Czech Republic</div>
+                        <span class="date">Oct 2025 - Present</span>
+                        <ul class="description">
+                            <li>Collaborated with senior team members, strengthening communication skills and gaining insight into professional financial advisory workflows.</li>
+                            <li>Developed analytical thinking, attention to detail, and the ability to work with confidential data in a structured and responsible way.</li>
+                            <li>Built foundational knowledge of personal finance, financial planning, and the Czech financial market through hands-on training.</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="job-title">Documentation Officer</div>
+                        <div class="company">Tatra Bank - Bratislava, Slovakia</div>
+                        <span class="date">Jun 2025 - Sep 2025</span>
+                        <ul class="description">
+                            <li>Ensured data accuracy on banking documents.</li>
+                            <li>Managed the manual archiving of contracts and activated them efficiently.</li>
+                            <li>Collaborated within a large team, enhancing coordination skills and learning to utilize AI effectively.</li>
+                            <li>Developed a passion for banking and finance through hands-on experience in a dynamic environment.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="section-title">Education</h2>
+                    
+                    <div class="timeline-item">
+                        <div class="job-title">Bachelor's in Business Administration</div>
+                        <div class="company">University of Economics in Prague (VŠE)</div>
+                        <span class="date">Sep 2025 - Present</span>
+                        <p class="description">Faculty of Business Administration</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="job-title">High School Diploma</div>
+                        <div class="company">Gymnázium na ul. Ladislava Sáru č.1, Bratislava</div>
+                        <span class="date">Sep 2020 - Jun 2025</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="right-column">
+                
+                <div class="card">
+                    <h2 class="section-title">Languages</h2>
+                    <div class="lang-item"><span>Italian</span> <span class="lang-level">Expert (C2)</span></div>
+                    <div class="lang-item"><span>Slovak</span> <span class="lang-level">Expert (C2)</span></div>
+                    <div class="lang-item"><span>English</span> <span class="lang-level">Advanced (C1)</span></div>
+                    <div class="lang-item"><span>Czech</span> <span class="lang-level">Advanced (C1)</span></div>
+                    <div class="lang-item"><span>Spanish</span> <span class="lang-level">Intermediate (B1)</span></div>
+                    <div class="lang-item"><span>German</span> <span class="lang-level">Beginner (A2)</span></div>
+                </div>
+
+                <div class="card">
+                    <h2 class="section-title">Skills</h2>
+                    <div class="skill-tag">Financial Planning</div>
+                    <div class="skill-tag">Business Development</div>
+                    <div class="skill-tag">Data Analysis</div>
+                    <div class="skill-tag">Team Coordination</div>
+                    <div class="skill-tag">AI Utilization</div>
+                    <div class="skill-tag">Strategic Thinking</div>
+                </div>
+
+                <div class="card">
+                    <h2 class="section-title">Certificates</h2>
+                    <p><strong>Certificate in Advanced English C1</strong></p>
+                    <p style="font-size: 0.9rem; color: #666;">Cambridge University Press & Assessment</p>
+                    <p style="font-size: 0.85rem; margin-top: 5px;">Credential ID: D351984</p>
+                    <p style="font-size: 0.85rem;">Date: Mar 2025 - Apr 2025</p>
+                </div>
+
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Alessandro Giovanni Codecà. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
