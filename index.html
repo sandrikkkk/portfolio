@@ -11,6 +11,7 @@
         content="Business Administration Student & Finance Professional. View my experience, skills, and education.">
     <meta property="og:type" content="website">
     <title>Alessandro Giovanni Codecà - Portfolio</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         /* Professional Swiss/Executive Style */
         :root {
@@ -385,6 +386,30 @@
             font-weight: 600;
         }
 
+        /* Proficiency Dots */
+        .prof-level {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .prof-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .prof-dot.filled {
+            background-color: var(--primary-color);
+        }
+
+        /* Hover effect for dots */
+        .sidebar-item:hover .prof-dot.filled {
+            background-color: var(--accent-color);
+        }
+
         /* Interactive Skills Section */
         .skills-container {
             max-height: 400px;
@@ -724,12 +749,52 @@
                 <div class="sidebar-section">
                     <h2 class="section-title" data-translate="languages">Languages</h2>
                     <div class="lang-list">
-                        <div class="sidebar-item"><span>Italian</span> <strong>Expert (C2)</strong></div>
-                        <div class="sidebar-item"><span>Slovak</span> <strong>Expert (C2)</strong></div>
-                        <div class="sidebar-item"><span>English</span> <strong>Advanced (C1)</strong></div>
-                        <div class="sidebar-item"><span>Czech</span> <strong>Advanced (C1)</strong></div>
-                        <div class="sidebar-item"><span>Spanish</span> <strong>Intermediate (B1)</strong></div>
-                        <div class="sidebar-item"><span>German</span> <strong>Beginner (A2)</strong></div>
+                        <div class="sidebar-item">
+                            <span>Italian</span>
+                            <div class="prof-level" title="Native/Expert (C2)">
+                                <span class="prof-dot filled"></span><span class="prof-dot filled"></span><span
+                                    class="prof-dot filled"></span><span class="prof-dot filled"></span><span
+                                    class="prof-dot filled"></span>
+                            </div>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>Slovak</span>
+                            <div class="prof-level" title="Native/Expert (C2)">
+                                <span class="prof-dot filled"></span><span class="prof-dot filled"></span><span
+                                    class="prof-dot filled"></span><span class="prof-dot filled"></span><span
+                                    class="prof-dot filled"></span>
+                            </div>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>English</span>
+                            <div class="prof-level" title="Advanced (C1)">
+                                <span class="prof-dot filled"></span><span class="prof-dot filled"></span><span
+                                    class="prof-dot filled"></span><span class="prof-dot filled"></span><span
+                                    class="prof-dot"></span>
+                            </div>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>Czech</span>
+                            <div class="prof-level" title="Advanced (C1)">
+                                <span class="prof-dot filled"></span><span class="prof-dot filled"></span><span
+                                    class="prof-dot filled"></span><span class="prof-dot filled"></span><span
+                                    class="prof-dot"></span>
+                            </div>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>Spanish</span>
+                            <div class="prof-level" title="Intermediate (B1)">
+                                <span class="prof-dot filled"></span><span class="prof-dot filled"></span><span
+                                    class="prof-dot"></span><span class="prof-dot"></span><span class="prof-dot"></span>
+                            </div>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>German</span>
+                            <div class="prof-level" title="Beginner (A2)">
+                                <span class="prof-dot filled"></span><span class="prof-dot"></span><span
+                                    class="prof-dot"></span><span class="prof-dot"></span><span class="prof-dot"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
