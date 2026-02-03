@@ -1,181 +1,677 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portfolio of Alessandro Giovanni Codecà - Business Administration Student & Finance Professional based in Prague.">
+    <meta property="og:title" content="Alessandro Giovanni Codecà - Portfolio">
+    <meta property="og:description"
+        content="Business Administration Student & Finance Professional. View my experience, skills, and education.">
+    <meta property="og:type" content="website">
     <title>Alessandro Giovanni Codecà - Portfolio</title>
     <style>
-        /* CSS Variables for easy theming */
+        /* Professional Swiss/Executive Style */
         :root {
-            --primary-color: #003366; /* Deep Blue for Finance/Business */
-            --secondary-color: #f4f4f9;
-            --text-color: #333;
-            --light-text: #666;
-            --accent-color: #007bff;
-            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Palette: Deep Navy, Dark Grey, White */
+            --primary-color: #0d253f;
+            /* Dark Navy */
+            --text-color: #333333;
+            --text-light: #666666;
+            --bg-color: #ffffff;
+            --section-bg: #ffffff;
+            --accent-color: #5b8fb9;
+            /* Muted Professional Blue */
+            --border-color: #e0e0e0;
+
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-serif: 'Georgia', serif;
         }
 
-        /* Reset & Base Styles */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: var(--font-family); color: var(--text-color); line-height: 1.6; background-color: var(--secondary-color); }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
+        /* Reset & Base */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+            transform: translateX(2px);
+        }
+
+        ul {
+            list-style: none;
+        }
 
         /* Container */
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
-
-        /* Header / Hero Section */
-        header { background: #fff; padding: 60px 0 40px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .profile-img {
-            width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
-            border: 4px solid var(--primary-color); margin-bottom: 20px;
-            background-color: #ddd; /* Placeholder color */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            animation: fadeIn 0.6s ease-in;
         }
-        h1 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 10px; }
-        .subtitle { font-size: 1.2rem; color: var(--light-text); margin-bottom: 20px; }
-        
-        .contact-info { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 0.95rem; }
-        .contact-item { display: flex; align-items: center; gap: 5px; }
-        .contact-item span { color: var(--accent-color); }
 
-        /* Main Content Grid */
-        .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-top: 40px; margin-bottom: 60px; }
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
 
-        /* Cards */
-        .card { background: #fff; padding: 30px; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .section-title { font-size: 1.5rem; color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-        /* Experience & Education Lists */
-        .timeline-item { margin-bottom: 25px; padding-left: 15px; border-left: 3px solid var(--accent-color); }
-        .timeline-item:last-child { margin-bottom: 0; }
-        .job-title { font-weight: bold; font-size: 1.1rem; color: #222; }
-        .company { font-style: italic; color: var(--light-text); }
-        .date { font-size: 0.85rem; color: var(--accent-color); margin-bottom: 8px; display: block; }
-        .description { font-size: 0.95rem; }
-        .description li { margin-bottom: 5px; position: relative; padding-left: 15px; }
-        .description li::before { content: "•"; position: absolute; left: 0; color: var(--accent-color); }
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
 
-        /* Skills & Languages */
-        .skill-tag { display: inline-block; background: var(--secondary-color); padding: 5px 10px; border-radius: 4px; margin: 0 5px 5px 0; font-size: 0.9rem; font-weight: 500; }
-        .lang-item { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .lang-level { font-weight: bold; color: var(--primary-color); }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Header / Hero */
+        header {
+            text-align: left;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        /* Typography */
+        h1 {
+            font-family: var(--font-main);
+            font-weight: 700;
+            font-size: 3rem;
+            color: var(--primary-color);
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-family: var(--font-main);
+            font-weight: 300;
+            font-size: 1.4rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            font-family: var(--font-main);
+            color: var(--text-light);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: scale(1.05);
+        }
+
+        .separator {
+            color: var(--border-color);
+        }
+
+        /* Layout Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+            gap: 60px;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 50px;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* Content Styles (No Cards) */
+        p.bio {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            max-width: 600px;
+        }
+
+        /* Timeline / Experience */
+        .timeline-item {
+            margin-bottom: 35px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            animation: slideInLeft 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .timeline-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .timeline-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .timeline-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .timeline-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .timeline-item:hover {
+            background-color: #f8f9fa;
+            transform: translateX(8px);
+            box-shadow: -3px 0 0 var(--accent-color), 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .job-title {
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: var(--primary-color);
+        }
+
+        .date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .company {
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: #444;
+        }
+
+        .description li {
+            margin-bottom: 6px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .description li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        /* Skills & Languages - Sidebar Style */
+        .sidebar-section {
+            margin-bottom: 40px;
+        }
+
+        .skill-list,
+        .lang-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #f0f0f0;
+            padding: 8px 4px 4px 4px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-item:hover {
+            background-color: #f8f9fa;
+            padding-left: 8px;
+        }
+
+        .sidebar-item strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Interactive Skills Section */
+        .skills-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .skills-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .skills-container::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 3px;
+        }
+
+        .skills-container::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .skills-container::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+
+        .skill-category {
+            margin-bottom: 25px;
+        }
+
+        .skill-category-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .skill-item {
+            font-size: 0.9rem;
+            padding: 6px 8px;
+            color: var(--text-color);
+            border-bottom: 1px solid #f8f8f8;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+
+        .skill-item:hover {
+            background-color: #f0f4f8;
+            padding-left: 12px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
 
         /* Footer */
-        footer { text-align: center; padding: 20px; color: var(--light-text); font-size: 0.9rem; margin-top: 40px; }
+        footer {
+            border-top: 1px solid var(--border-color);
+            /* Separator */
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-top: 20px;
+        }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .main-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2rem; }
+            .main-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+            }
+
+            .date {
+                margin-bottom: 5px;
+            }
+        }
+
+        /* Print Optimization */
+        @media print {
+            body {
+                background-color: #fff;
+                color: #000;
+                font-size: 11pt;
+                /* Optimal for reading on paper */
+            }
+
+            .container {
+                width: 100%;
+                max-width: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+
+            /* Expand links for print if needed, but for a clean resume look we keep them as text */
+
+            header {
+                border-bottom: 2px solid #000;
+                padding-bottom: 20px;
+                margin-bottom: 30px;
+            }
+
+            .section-title {
+                border-bottom-color: #000;
+                color: #000;
+            }
+
+            .job-title {
+                color: #000;
+            }
+
+            footer {
+                display: none;
+            }
+
+            /* Hide footer for print */
+
+            /* Ensure page breaks don't cut items in half */
+            .timeline-item,
+            section {
+                page-break-inside: avoid;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header>
         <div class="container">
-            <img src="profile.jpg" alt="Alessandro Giovanni Codecà" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
-            
-            <h1>Alessandro Giovanni Codecà</h1>
-            
-            <p class="subtitle">Business Administration Student & Finance Professional</p>
-            
+            <!-- No Image -->
+
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <h1>Alessandro Giovanni Codecà</h1>
+                    <p class="subtitle">Business Administration Student & Finance Professional</p>
+                </div>
+                <!-- Download/Print Button -->
+                <button onclick="window.print()" class="no-print" style="
+                    background: transparent;
+                    border: 1px solid var(--primary-color);
+                    color: var(--primary-color);
+                    padding: 8px 16px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-family: var(--font-main);
+                    font-weight: 500;
+                    transition: all 0.2s;
+                " onmouseover="this.style.background='var(--primary-color)'; this.style.color='#fff'"
+                    onmouseout="this.style.background='transparent'; this.style.color='var(--primary-color)'">
+                    Download PDF
+                </button>
+            </div>
+
             <div class="contact-info">
-                <div class="contact-item">📍 Prague, Czech Republic</div>
-                <a href="mailto:alessandro.codeca@outlook.com" class="contact-item">✉️ alessandro.codeca@outlook.com</a>
-                <a href="tel:+420775441798" class="contact-item">📞 +420 775 441 798</a>
+                <a href="mailto:alessandro.codeca@outlook.com" class="contact-item">alessandro.codeca@outlook.com</a>
+                <span class="separator">|</span>
+                <a href="tel:+420775441798" class="contact-item">+420 775 441 798</a>
+                <span class="separator">|</span>
+                <div class="contact-item">Prague, Czech Republic</div>
             </div>
         </div>
     </header>
 
     <div class="container">
         <div class="main-grid">
-            
-            <section class="left-column">
-                
-                <div class="card">
-                    <h2 class="section-title">About Me</h2>
-                    <p>
-                        I am a motivated and results-oriented business student currently pursuing a Bachelor's degree in Business Administration at the University of Economics in Prague (VŠE). I am passionate about business development, finance, and innovation, and I am eager to apply my skills to real-world projects that combine strategic thinking with practical impact.
-                    </p>
-                </div>
 
-                <div class="card">
+            <section class="left-column">
+
+                <section>
+                    <h2 class="section-title">Profile</h2>
+                    <p class="bio">
+                        I am a motivated and results-oriented business student currently pursuing a Bachelor's degree in
+                        Business Administration at the University of Economics in Prague (VŠE). I am passionate about
+                        business development, finance, and innovation, and I am eager to apply my skills to real-world
+                        projects that combine strategic thinking with practical impact.
+                    </p>
+                </section>
+
+                <section>
                     <h2 class="section-title">Work Experience</h2>
-                    
+
                     <div class="timeline-item">
-                        <div class="job-title">Trainee</div>
-                        <div class="company">Partners Financial Services, a.s. - Prague, Czech Republic</div>
-                        <span class="date">Oct 2025 - Present</span>
+                        <div class="timeline-header">
+                            <div class="job-title">Trainee</div>
+                            <span class="date">Oct 2025 - Dec 2025</span>
+                        </div>
+                        <span class="company">Partners Financial Services, a.s. - Prague, Czech Republic</span>
                         <ul class="description">
-                            <li>Collaborated with senior team members, strengthening communication skills and gaining insight into professional financial advisory workflows.</li>
-                            <li>Developed analytical thinking, attention to detail, and the ability to work with confidential data in a structured and responsible way.</li>
-                            <li>Built foundational knowledge of personal finance, financial planning, and the Czech financial market through hands-on training.</li>
+                            <li>Collaborated with senior team members, strengthening communication skills and gaining
+                                insight into professional financial advisory workflows.</li>
+                            <li>Developed analytical thinking, attention to detail, and the ability to work with
+                                confidential data in a structured and responsible way.</li>
+                            <li>Built foundational knowledge of personal finance, financial planning, and the Czech
+                                financial market through hands-on training.</li>
                         </ul>
                     </div>
 
                     <div class="timeline-item">
-                        <div class="job-title">Documentation Officer</div>
-                        <div class="company">Tatra Bank - Bratislava, Slovakia</div>
-                        <span class="date">Jun 2025 - Sep 2025</span>
+                        <div class="timeline-header">
+                            <div class="job-title">Documentation Officer</div>
+                            <span class="date">Jun 2025 - Sep 2025</span>
+                        </div>
+                        <span class="company">Tatra Bank - Bratislava, Slovakia</span>
                         <ul class="description">
                             <li>Ensured data accuracy on banking documents.</li>
                             <li>Managed the manual archiving of contracts and activated them efficiently.</li>
-                            <li>Collaborated within a large team, enhancing coordination skills and learning to utilize AI effectively.</li>
-                            <li>Developed a passion for banking and finance through hands-on experience in a dynamic environment.</li>
+                            <li>Collaborated within a large team, enhancing coordination skills and learning to utilize
+                                AI effectively.</li>
+                            <li>Developed a passion for banking and finance through hands-on experience in a dynamic
+                                environment.</li>
                         </ul>
                     </div>
-                </div>
+                </section>
 
-                <div class="card">
+                <section>
                     <h2 class="section-title">Education</h2>
-                    
+
                     <div class="timeline-item">
-                        <div class="job-title">Bachelor's in Business Administration</div>
-                        <div class="company">University of Economics in Prague (VŠE)</div>
-                        <span class="date">Sep 2025 - Present</span>
-                        <p class="description">Faculty of Business Administration</p>
+                        <div class="timeline-header">
+                            <div class="job-title">Bachelor's in Business Administration</div>
+                            <span class="date">Sep 2025 - Present</span>
+                        </div>
+                        <span class="company">University of Economics in Prague (VŠE), Faculty of Business
+                            Administration</span>
                     </div>
 
                     <div class="timeline-item">
-                        <div class="job-title">High School Diploma</div>
-                        <div class="company">Gymnázium na ul. Ladislava Sáru č.1, Bratislava</div>
-                        <span class="date">Sep 2020 - Jun 2025</span>
+                        <div class="timeline-header">
+                            <div class="job-title">High School Diploma</div>
+                            <span class="date">Sep 2020 - Jun 2025</span>
+                        </div>
+                        <span class="company">Gymnázium na ul. Ladislava Sáru č.1, Bratislava</span>
                     </div>
-                </div>
+                </section>
             </section>
 
-            <section class="right-column">
-                
-                <div class="card">
+            <aside class="right-column">
+
+                <div class="sidebar-section">
                     <h2 class="section-title">Languages</h2>
-                    <div class="lang-item"><span>Italian</span> <span class="lang-level">Expert (C2)</span></div>
-                    <div class="lang-item"><span>Slovak</span> <span class="lang-level">Expert (C2)</span></div>
-                    <div class="lang-item"><span>English</span> <span class="lang-level">Advanced (C1)</span></div>
-                    <div class="lang-item"><span>Czech</span> <span class="lang-level">Advanced (C1)</span></div>
-                    <div class="lang-item"><span>Spanish</span> <span class="lang-level">Intermediate (B1)</span></div>
-                    <div class="lang-item"><span>German</span> <span class="lang-level">Beginner (A2)</span></div>
+                    <div class="lang-list">
+                        <div class="sidebar-item"><span>Italian</span> <strong>Expert (C2)</strong></div>
+                        <div class="sidebar-item"><span>Slovak</span> <strong>Expert (C2)</strong></div>
+                        <div class="sidebar-item"><span>English</span> <strong>Advanced (C1)</strong></div>
+                        <div class="sidebar-item"><span>Czech</span> <strong>Advanced (C1)</strong></div>
+                        <div class="sidebar-item"><span>Spanish</span> <strong>Intermediate (B1)</strong></div>
+                        <div class="sidebar-item"><span>German</span> <strong>Beginner (A2)</strong></div>
+                    </div>
                 </div>
 
-                <div class="card">
+                <div class="sidebar-section">
                     <h2 class="section-title">Skills</h2>
-                    <div class="skill-tag">Financial Planning</div>
-                    <div class="skill-tag">Business Development</div>
-                    <div class="skill-tag">Data Analysis</div>
-                    <div class="skill-tag">Team Coordination</div>
-                    <div class="skill-tag">AI Utilization</div>
-                    <div class="skill-tag">Strategic Thinking</div>
+                    <div class="skills-container">
+
+                        <!-- Work Experience Skills -->
+                        <div class="skill-category">
+                            <div class="skill-category-title">Partners Financial Services</div>
+                            <div class="skill-item">Interpersonal Communication</div>
+                            <div class="skill-item">Customer Relationship Management (CRM)</div>
+                            <div class="skill-item">Financial Analysis</div>
+                        </div>
+
+                        <div class="skill-category">
+                            <div class="skill-category-title">Tatra Bank</div>
+                            <div class="skill-item">Problem Solving</div>
+                            <div class="skill-item">Documentation Control</div>
+                            <div class="skill-item">Document Tracking</div>
+                            <div class="skill-item">Paperwork</div>
+                            <div class="skill-item">Business Documentation</div>
+                            <div class="skill-item">Strategy</div>
+                            <div class="skill-item">Artificial Intelligence (AI)</div>
+                            <div class="skill-item">Computer Literacy</div>
+                            <div class="skill-item">Spreadsheets</div>
+                            <div class="skill-item">Microsoft Excel</div>
+                            <div class="skill-item">Microsoft Office</div>
+                            <div class="skill-item">Microsoft Outlook</div>
+                            <div class="skill-item">Document Management</div>
+                            <div class="skill-item">Software Documentation</div>
+                            <div class="skill-item">Documentation</div>
+                            <div class="skill-item">Technical Documentation</div>
+                            <div class="skill-item">Editing</div>
+                            <div class="skill-item">Document Review</div>
+                            <div class="skill-item">Teamwork</div>
+                            <div class="skill-item">Time Management</div>
+                            <div class="skill-item">Analytical Skills</div>
+                            <div class="skill-item">Lease Documentation</div>
+                        </div>
+
+                        <!-- Education Skills -->
+                        <div class="skill-category">
+                            <div class="skill-category-title">Prague University of Economics</div>
+                            <div class="skill-item">Management</div>
+                            <div class="skill-item">Macroeconomics</div>
+                            <div class="skill-item">Strategy</div>
+                            <div class="skill-item">Computer Literacy</div>
+                            <div class="skill-item">Citations</div>
+                            <div class="skill-item">Accounting</div>
+                            <div class="skill-item">Microsoft Word</div>
+                            <div class="skill-item">Microsoft PowerPoint</div>
+                        </div>
+
+                        <div class="skill-category">
+                            <div class="skill-category-title">Gymnázium Bratislava</div>
+                            <div class="skill-item">Italian Translation</div>
+                        </div>
+
+                        <!-- Certifications Skills -->
+                        <div class="skill-category">
+                            <div class="skill-category-title">Leadership Foundations</div>
+                            <div class="skill-item">Leadership</div>
+                            <div class="skill-item">Team Leadership</div>
+                        </div>
+
+                        <div class="skill-category">
+                            <div class="skill-category-title">Project Management Foundations</div>
+                            <div class="skill-item">Project Planning</div>
+                            <div class="skill-item">Project Estimation</div>
+                            <div class="skill-item">Project Coordination</div>
+                            <div class="skill-item">Project Management</div>
+                        </div>
+
+                        <div class="skill-category">
+                            <div class="skill-category-title">Career Essentials in Generative AI</div>
+                            <div class="skill-item">Artificial Intelligence for Business</div>
+                            <div class="skill-item">Generative AI</div>
+                            <div class="skill-item">Microsoft Copilot</div>
+                            <div class="skill-item">Prompt Engineering</div>
+                            <div class="skill-item">Responsible AI</div>
+                        </div>
+
+                        <div class="skill-category">
+                            <div class="skill-category-title">Cambridge English Certificate</div>
+                            <div class="skill-item">English as a Second Language (ESL)</div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="card">
-                    <h2 class="section-title">Certificates</h2>
-                    <p><strong>Certificate in Advanced English C1</strong></p>
-                    <p style="font-size: 0.9rem; color: #666;">Cambridge University Press & Assessment</p>
-                    <p style="font-size: 0.85rem; margin-top: 5px;">Credential ID: D351984</p>
-                    <p style="font-size: 0.85rem;">Date: Mar 2025 - Apr 2025</p>
+                <div class="sidebar-section">
+                    <h2 class="section-title">Certifications</h2>
+                    <div style="margin-bottom: 10px;">
+                        <div style="font-weight: 600; color: var(--primary-color);">Certificate in Advanced English C1
+                        </div>
+                        <div style="font-size: 0.9rem; color: #666; font-style: italic;">Cambridge University Press &
+                            Assessment</div>
+                        <div style="font-size: 0.85rem; margin-top: 2px;">Mar 2025 - Apr 2025</div>
+                    </div>
                 </div>
 
-            </section>
+            </aside>
         </div>
     </div>
 
@@ -184,4 +680,5 @@
     </footer>
 
 </body>
+
 </html>
