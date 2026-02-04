@@ -158,71 +158,7 @@
             border-bottom-color: var(--accent-color);
         }
 
-        /* Theme Picker */
-        .theme-picker-btn {
-            position: fixed;
-            bottom: 90px;
-            right: 30px;
-            width: 45px;
-            height: 45px;
-            background: var(--card-bg);
-            color: var(--text-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border-color);
-            z-index: 999;
-            transition: transform 0.3s;
-        }
 
-        .theme-picker-btn:hover {
-            transform: rotate(90deg);
-        }
-
-        .theme-panel {
-            position: fixed;
-            bottom: 145px;
-            right: 30px;
-            background: var(--card-bg);
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            border: 1px solid var(--border-color);
-            z-index: 1000;
-            display: flex;
-            gap: 10px;
-            flex-direction: column;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-        }
-
-        .theme-panel.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .theme-option {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: transform 0.2s;
-        }
-
-        .theme-option:hover {
-            transform: scale(1.2);
-        }
-
-        .theme-option.active {
-            border-color: var(--text-color);
-        }
 
         /* Modal */
         dialog {
@@ -2012,17 +1948,7 @@
         </svg>
     </button>
 
-    <!-- Theme Picker -->
-    <button class="theme-picker-btn" id="themeBtn" aria-label="Open Theme Picker">⚙️</button>
-    <div class="theme-panel" id="themePanel">
-        <div class="theme-option" style="background: #3B82F6;" onclick="setTheme('#3B82F6')" title="Vibrant Blue"></div>
-        <div class="theme-option" style="background: #10B981;" onclick="setTheme('#10B981')" title="Emerald Green">
-        </div>
-        <div class="theme-option" style="background: #8B5CF6;" onclick="setTheme('#8B5CF6')" title="Royal Purple"></div>
-        <div class="theme-option" style="background: #F59E0B;" onclick="setTheme('#F59E0B')" title="Sunset Orange">
-        </div>
-        <div class="theme-option" style="background: #EC4899;" onclick="setTheme('#EC4899')" title="Pink"></div>
-    </div>
+
 
     <!-- Coursework Modal -->
     <dialog id="courseworkModal">
@@ -2690,46 +2616,14 @@
             sections.forEach(section => observer.observe(section));
         }
 
-        // Theme Picker Logic
-        const themeBtn = document.getElementById('themeBtn');
-        const themePanel = document.getElementById('themePanel');
-
-        themeBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent closing immediately
-            themePanel.classList.toggle('show');
-        });
-
-        // Close panel on outside click
-        window.addEventListener('click', (e) => {
-            if (!themePanel.contains(e.target) && e.target !== themeBtn) {
-                themePanel.classList.remove('show');
-            }
-        });
-
-        function setTheme(color) {
-            document.documentElement.style.setProperty('--accent-color', color);
-            localStorage.setItem('accentColor', color);
-
-            // Re-apply to progress bars if needed or just let CSS handle it
-            // Update active state visual
-            document.querySelectorAll('.theme-option').forEach(opt => {
-                opt.style.borderColor = 'transparent';
-                if (opt.style.background === color) opt.style.borderColor = 'var(--text-color)';
-            });
-        }
-
         // Init Interactive Features
         window.addEventListener('scroll', () => {
             // Handled by observer mostly, but active nav fallback can act here 
         });
 
-        // Load saved accent color
-        const savedAccent = localStorage.getItem('accentColor');
-        if (savedAccent) {
-            setTheme(savedAccent);
-        }
-
         initActiveNav();
+
+
     </script>
 
 </body>
