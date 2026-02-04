@@ -11,6 +11,19 @@
         content="Business Administration Student & Finance Professional. View my experience, skills, and education.">
     <meta property="og:type" content="website">
     <title>Alessandro Giovanni Codecà - Portfolio</title>
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Alessandro Giovanni Codecà - Portfolio">
+    <meta property="og:description"
+        content="Business Administration Student, Finance Professional & AI Enthusiast. View my experience and projects.">
+    <meta property="og:url" content="https://alessandrogcodeca.github.io/portfolio/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Alessandro Giovanni Codecà - Portfolio">
+    <meta name="twitter:description"
+        content="Business Administration Student, Finance Professional & AI Enthusiast. View my experience and projects.">
+
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1941,13 +1954,61 @@
             btn.textContent = theme === 'dark' ? '☀️' : '🌙';
         }
 
-        // Typing Animation Logic
+
+
+        // Advanced Typing Animation Logic
+        const roles = [
+            "Business Administration Student",
+            "Finance Enthusiast",
+            "AI Enthusiast",
+            "Lifelong Learner",
+            "Problem Solver"
+        ];
+
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 50;
+
+        function typeRoles(element) {
+            const currentRole = roles[roleIndex];
+
+            if (isDeleting) {
+                element.innerHTML = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 30; // Faster deleting
+            } else {
+                element.innerHTML = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 80; // Normal typing
+            }
+
+            // Ensure cursor is always there
+            if (!element.querySelector('.typing-cursor')) {
+                const cursor = document.createElement('span');
+                cursor.className = 'typing-cursor';
+                element.appendChild(cursor);
+            }
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                // Finished typing word, pause then delete
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                // Finished deleting, move to next word
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(() => typeRoles(element), typeSpeed);
+        }
+
+        // Simple typewriter for static text (used for translations mainly)
         function typeWriter(text, element, speed = 50) {
             let i = 0;
-            element.innerHTML = ''; // Clear existing text
+            element.innerHTML = '';
             element.classList.add('typing-active');
-
-            // Add cursor
             const cursor = document.createElement('span');
             cursor.className = 'typing-cursor';
             element.appendChild(cursor);
@@ -1958,10 +2019,7 @@
                     i++;
                     setTimeout(type, speed);
                 } else {
-                    // Remove cursor after a delay
-                    setTimeout(() => {
-                        cursor.remove();
-                    }, 2000);
+                    setTimeout(() => cursor.remove(), 2000);
                 }
             }
             type();
@@ -2113,10 +2171,13 @@
             if (savedLang !== 'en') {
                 switchLanguage(savedLang);
             } else {
-                // Initial typing animation for default language
-                // Note: element might need to be re-selected if not found
+                // Start infinite typing animation for default language
                 const subtitle = document.querySelector('.subtitle');
-                if (subtitle) typeWriter(translations['en'].subtitle, subtitle, 40);
+                if (subtitle) {
+                    // Clear initial text to start animation clean
+                    subtitle.innerHTML = '';
+                    typeRoles(subtitle);
+                }
             }
 
             // Scroll Animation Observer Setup
