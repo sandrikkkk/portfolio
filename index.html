@@ -245,16 +245,84 @@
             }
         }
 
-        /* Header / Hero */
+        /* Sticky Glassmorphism Navigation */
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.85);
+            /* Glass effect */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        [data-theme="dark"] .sticky-nav {
+            background: rgba(15, 23, 42, 0.85);
+            border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: flex-end;
+            /* Align right */
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-color);
+            position: relative;
+            opacity: 0.8;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+            opacity: 1;
+        }
+
+        /* Underline effect */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Adjust Header padding to account for fixed nav */
         header {
             text-align: left;
-            padding: 80px 0 60px;
+            padding: 100px 0 60px;
+            /* Increased top padding */
             background: linear-gradient(135deg, var(--bg-color) 0%, rgba(59, 130, 246, 0.05) 100%);
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 60px;
             position: relative;
             overflow: hidden;
             animation: fadeIn 0.8s ease-in;
+            margin-top: 0;
         }
 
         /* Ambient Background Mesh (Optional simple CSS version) */
@@ -712,27 +780,85 @@
             align-items: center;
         }
 
-        .lang-btn {
+        /* Language Dropdown */
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            position: relative;
+        }
+
+        .lang-dropdown {
+            position: relative;
+        }
+
+        .lang-toggle {
             background: transparent;
             border: 1px solid var(--border-color);
             color: var(--text-color);
-            padding: 4px 10px;
-            border-radius: 4px;
+            padding: 6px 12px;
+            border-radius: 20px;
             cursor: pointer;
             font-family: var(--font-main);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             transition: all 0.2s ease;
         }
 
-        .lang-btn:hover {
+        .lang-toggle:hover {
             border-color: var(--accent-color);
-            color: var(--accent-color);
+            background: rgba(59, 130, 246, 0.05);
         }
 
-        .lang-btn.active {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            width: 180px;
+            padding: 8px;
+            display: none;
+            /* Toggled via JS */
+            flex-direction: column;
+            gap: 2px;
+            z-index: 1100;
+        }
+
+        .lang-menu.show {
+            display: flex;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            transition: background 0.2s;
+        }
+
+        .lang-option:hover {
+            background: var(--bg-color);
+            color: var(--primary-color);
+        }
+
+        .flag {
+            font-size: 1.2rem;
+        }
+
+        .arrow {
+            font-size: 0.7rem;
+            color: var(--text-light);
         }
 
         /* Social Media Icons */
@@ -799,50 +925,119 @@
         /* Print Optimization */
         @media print {
             body {
-                background-color: #fff;
-                color: #000;
-                font-size: 11pt;
-                /* Optimal for reading on paper */
+                background-color: white;
+                color: black;
             }
 
-            .container {
-                width: 100%;
-                max-width: none;
-                padding: 0;
-                margin: 0;
-            }
-
-            .no-print {
+            /* Hide interactive/nav elements */
+            .sticky-nav,
+            .progress-container,
+            .scroll-down,
+            .back-to-top,
+            .language-switcher,
+            .contact-form,
+            /* Hide form, keep contact info */
+            .submit-btn,
+            .no-print,
+            button {
                 display: none !important;
+            }
+
+            /* Reset Header */
+            header {
+                padding: 20px 0;
+                margin-bottom: 30px;
+                background: none;
+                border: none;
+                text-align: center;
+                /* Center header for print */
+                animation: none !important;
+            }
+
+            header::before {
+                display: none;
+            }
+
+            /* Hide mesh */
+
+            h1 {
+                font-size: 2.5rem;
+                color: black;
+            }
+
+            .subtitle {
+                color: #444;
+                margin-bottom: 10px;
+            }
+
+            /* Flatten Cards */
+            .timeline-item,
+            .sidebar-section,
+            .skill-item,
+            .timeline-logo {
+                box-shadow: none !important;
+                border: none !important;
+                background: white !important;
+                padding-left: 0;
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .timeline-item {
+                border-bottom: 1px solid #eee !important;
+                padding-bottom: 20px;
+            }
+
+            .sidebar-section {
+                border: none !important;
+                padding: 0;
+            }
+
+            /* Layout Adjustments */
+            .main-grid {
+                display: block;
+                /* Stack everything */
+            }
+
+            .left-column,
+            .right-column {
+                width: 100%;
+                position: static;
+                /* Disable sticky */
+            }
+
+            .right-column {
+                margin-top: 30px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                /* 2-col layout for sidebar items in print */
+                gap: 20px;
+                page-break-inside: avoid;
+            }
+
+            /* Expand Skills Container */
+            .skills-container {
+                max-height: none;
+                overflow: visible;
+            }
+
+            /* Typography tweaks */
+            p,
+            li,
+            span {
+                color: black !important;
             }
 
             a {
                 text-decoration: none;
-                color: #000;
+                color: black !important;
             }
 
-            /* Expand links for print if needed, but for a clean resume look we keep them as text */
-
-            header {
-                border-bottom: 2px solid #000;
-                padding-bottom: 20px;
-                margin-bottom: 30px;
-            }
-
+            /* Visual separators */
             .section-title {
-                border-bottom-color: #000;
-                color: #000;
+                border-bottom-color: black;
+                color: black;
             }
-
-            .job-title {
-                color: #000;
-            }
-
-            footer {
-                display: none;
-            }
-
-            /* Hide footer for print */
 
             /* Ensure page breaks don't cut items in half */
             .timeline-item,
@@ -854,6 +1049,19 @@
 </head>
 
 <body>
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav print-hidden">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link" data-translate="navProfile">Profile</a></li>
+                <li><a href="#experience" class="nav-link" data-translate="navExperience">Experience</a></li>
+                <li><a href="#education" class="nav-link" data-translate="navEducation">Education</a></li>
+                <li><a href="#skills" class="nav-link" data-translate="skills">Skills</a></li>
+                <li><a href="#contact" class="nav-link" data-translate="contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- Scroll Progress -->
     <div class="progress-container">
@@ -875,14 +1083,34 @@
                     <!-- Language Switcher -->
                     <div class="language-switcher">
                         <!-- Dark Mode Toggle -->
-                        <button class="lang-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+                        <button class="lang-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle Dark Mode"
+                            style="padding: 6px 10px;">
                             🌙
                         </button>
-                        <div style="width: 1px; height: 20px; background: var(--border-color); margin: 0 4px;"></div>
-                        <button class="lang-btn active" onclick="switchLanguage('en')" data-lang="en">EN</button>
-                        <button class="lang-btn" onclick="switchLanguage('it')" data-lang="it">IT</button>
-                        <button class="lang-btn" onclick="switchLanguage('sk')" data-lang="sk">SK</button>
-                        <button class="lang-btn" onclick="switchLanguage('cs')" data-lang="cs">CS</button>
+
+                        <div class="lang-dropdown">
+                            <button class="lang-toggle" onclick="toggleLanguageMenu()" id="langToggleBtn">
+                                <span class="flag" id="currentLangFlag">🇬🇧</span>
+                                <span id="currentLangName">English</span>
+                                <span class="arrow">▼</span>
+                            </button>
+                            <div class="lang-menu" id="langMenu">
+                                <div class="lang-option" onclick="switchLanguage('en')"><span class="flag">🇬🇧</span>
+                                    English (UK)</div>
+                                <div class="lang-option" onclick="switchLanguage('it')"><span class="flag">🇮🇹</span>
+                                    Italian</div>
+                                <div class="lang-option" onclick="switchLanguage('sk')"><span class="flag">🇸🇰</span>
+                                    Slovak</div>
+                                <div class="lang-option" onclick="switchLanguage('cs')"><span class="flag">🇨🇿</span>
+                                    Czech (CZ)</div>
+                                <div class="lang-option" onclick="switchLanguage('de')"><span class="flag">🇩🇪</span>
+                                    German</div>
+                                <div class="lang-option" onclick="switchLanguage('es')"><span class="flag">🇪🇸</span>
+                                    Spanish</div>
+                                <div class="lang-option" onclick="switchLanguage('fr')"><span class="flag">🇫🇷</span>
+                                    French</div>
+                            </div>
+                        </div>
                     </div>
                     <!-- Download/Print Button -->
                     <button onclick="window.print()" style="
@@ -920,7 +1148,7 @@
 
             <section class="left-column">
 
-                <section>
+                <section id="about">
                     <h2 class="section-title" data-translate="profile">Profile</h2>
                     <p class="bio">
                         I am a motivated and results-oriented business student currently pursuing a Bachelor's degree in
@@ -930,7 +1158,7 @@
                     </p>
                 </section>
 
-                <section>
+                <section id="experience">
                     <h2 class="section-title" data-translate="workExperience">Work Experience</h2>
 
                     <div class="timeline-item">
@@ -978,7 +1206,7 @@
                     </div>
                 </section>
 
-                <section>
+                <section id="education">
                     <h2 class="section-title" data-translate="education">Education</h2>
 
                     <div class="timeline-item">
@@ -1082,7 +1310,7 @@
                 </div>
             </div>
 
-            <div class="sidebar-section">
+            <div class="sidebar-section" id="skills">
                 <h2 class="section-title" data-translate="skills">Skills</h2>
                 <div class="skills-container">
 
@@ -1222,25 +1450,7 @@
                         color: var(--text-light);
                     }
 
-                    .btn-credential {
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 6px;
-                        padding: 6px 12px;
-                        border: 1px solid var(--border-color);
-                        border-radius: 20px;
-                        font-size: 0.8rem;
-                        font-weight: 500;
-                        color: var(--primary-color);
-                        margin-top: 8px;
-                        transition: all 0.2s;
-                        text-decoration: none;
-                    }
 
-                    .btn-credential:hover {
-                        background: #f8f9fa;
-                        border-color: var(--primary-color);
-                    }
 
                     .cert-skills {
                         display: flex;
@@ -1274,7 +1484,7 @@
                             <span class="date">Issued Apr 2025</span>
                         </div>
                     </div>
-                    <a href="#" class="btn-credential">Show credential ↗</a>
+
                     <div class="cert-skills">
                         <span class="cert-skill">English as a Second Language</span>
                     </div>
@@ -1289,7 +1499,7 @@
                             <span class="date">Issued Oct 2025</span>
                         </div>
                     </div>
-                    <a href="#" class="btn-credential">Show credential ↗</a>
+
                     <div class="cert-skills">
                         <span class="cert-skill">Generative AI</span>
                         <span class="cert-skill">Prompt Engineering</span>
@@ -1306,7 +1516,7 @@
                             <span class="date">Issued Oct 2025</span>
                         </div>
                     </div>
-                    <a href="#" class="btn-credential">Show credential ↗</a>
+
                     <div class="cert-skills">
                         <span class="cert-skill">Leadership</span>
                         <span class="cert-skill">Team Management</span>
@@ -1322,7 +1532,7 @@
                             <span class="date">Issued Oct 2025</span>
                         </div>
                     </div>
-                    <a href="#" class="btn-credential">Show credential ↗</a>
+
                     <div class="cert-skills">
                         <span class="cert-skill">Project Planning</span>
                         <span class="cert-skill">Estimation</span>
@@ -1336,7 +1546,7 @@
     </div>
 
     <!-- Contact Section (Centered) -->
-    <div style="margin-top: 40px; margin-bottom: 50px; display: flex; justify-content: center;">
+    <div style="margin-top: 40px; margin-bottom: 50px; display: flex; justify-content: center;" id="contact">
         <section style="width: 100%; max-width: 700px;">
             <h2 class="section-title">Get in Touch</h2>
             <p style="margin-bottom: 25px; color: var(--text-light);">
@@ -1396,6 +1606,8 @@
         // Multi-language support
         const translations = {
             en: {
+                flag: "🇬🇧",
+                name: "English",
                 subtitle: "Business Administration Student",
                 profile: "Profile",
                 profileText: "I am a motivated and results-oriented business student currently pursuing a Bachelor's degree in Business Administration at the University of Economics in Prague (VŠE). I am passionate about business development, finance, and innovation, and I am eager to apply my skills to real-world projects that combine strategic thinking with practical impact.",
@@ -1404,9 +1616,15 @@
                 languages: "Languages",
                 skills: "Skills",
                 certifications: "Certifications",
-                sendMessage: "Send Message"
+                sendMessage: "Send Message",
+                navProfile: "Profile",
+                navExperience: "Experience",
+                navEducation: "Education",
+                contact: "Contact"
             },
             it: {
+                flag: "🇮🇹",
+                name: "Italiano",
                 subtitle: "Studente di Amministrazione Aziendale",
                 profile: "Profilo",
                 profileText: "Sono uno studente di economia motivato e orientato ai risultati, attualmente iscritto a un corso di laurea in Amministrazione Aziendale presso l'Università di Economia di Praga (VŠE). Sono appassionato di sviluppo aziendale, finanza e innovazione, e sono desideroso di applicare le mie competenze a progetti reali che combinano pensiero strategico e impatto pratico.",
@@ -1415,9 +1633,15 @@
                 languages: "Lingue",
                 skills: "Competenze",
                 certifications: "Certificazioni",
-                sendMessage: "Invia Messaggio"
+                sendMessage: "Invia Messaggio",
+                navProfile: "Profilo",
+                navExperience: "Esperienza",
+                navEducation: "Istruzione",
+                contact: "Contatto"
             },
             sk: {
+                flag: "🇸🇰",
+                name: "Slovenčina",
                 subtitle: "Študent Obchodnej Administratívy",
                 profile: "Profil",
                 profileText: "Som motivovaný a výsledkovo orientovaný študent ekonómie, ktorý v súčasnosti študuje bakalársky program Obchodná administratíva na Vysokej škole ekonomickej v Prahe (VŠE). Som nadšený pre rozvoj podnikania, financie a inovácie a som pripravený aplikovať svoje zručnosti na reálne projekty, ktoré kombinujú strategické myslenie s praktickým dopadom.",
@@ -1426,9 +1650,15 @@
                 languages: "Jazyky",
                 skills: "Zručnosti",
                 certifications: "Certifikáty",
-                sendMessage: "Poslať Správu"
+                sendMessage: "Poslať Správu",
+                navProfile: "Profil",
+                navExperience: "Skúsenosti",
+                navEducation: "Vzdelanie",
+                contact: "Kontakt"
             },
             cs: {
+                flag: "🇨🇿",
+                name: "Čeština",
                 subtitle: "Student Obchodní Administrativy",
                 profile: "Profil",
                 profileText: "Jsem motivovaný a výsledkově orientovaný student ekonomie, který v současné době studuje bakalářský program Obchodní administrativa na Vysoké škole ekonomické v Praze (VŠE). Jsem nadšený pro rozvoj podnikání, finance a inovace a jsem připraven aplikovat své dovednosti na reálné projekty, které kombinují strategické myšlení s praktickým dopadem.",
@@ -1437,7 +1667,62 @@
                 languages: "Jazyky",
                 skills: "Dovednosti",
                 certifications: "Certifikáty",
-                sendMessage: "Odeslat Zprávu"
+                sendMessage: "Odeslat Zprávu",
+                navProfile: "Profil",
+                navExperience: "Zkušenosti",
+                navEducation: "Vzdělání",
+                contact: "Kontakt"
+            },
+            de: {
+                flag: "🇩🇪",
+                name: "Deutsch",
+                subtitle: "Betriebswirtschaftsstudent",
+                profile: "Profil",
+                profileText: "Ich bin ein motivierter und ergebnisorientierter Wirtschaftsstudent an der Wirtschaftsuniversität Prag (VŠE). Ich begeistere mich für Geschäftsentwicklung, Finanzen und Innovation.",
+                workExperience: "Berufserfahrung",
+                education: "Ausbildung",
+                languages: "Sprachen",
+                skills: "Kenntnisse",
+                certifications: "Zertifizierungen",
+                sendMessage: "Nachricht senden",
+                navProfile: "Profil",
+                navExperience: "Erfahrung",
+                navEducation: "Ausbildung",
+                contact: "Kontakt"
+            },
+            es: {
+                flag: "🇪🇸",
+                name: "Español",
+                subtitle: "Estudiante de Administración de Empresas",
+                profile: "Perfil",
+                profileText: "Soy un estudiante de negocios motivado y orientado a resultados que actualmente cursa una licenciatura en Administración de Empresas en la Universidad de Economía de Praga (VŠE).",
+                workExperience: "Experiencia Laboral",
+                education: "Educación",
+                languages: "Idiomas",
+                skills: "Habilidades",
+                certifications: "Certificaciones",
+                sendMessage: "Enviar Mensaje",
+                navProfile: "Perfil",
+                navExperience: "Experiencia",
+                navEducation: "Educación",
+                contact: "Contacto"
+            },
+            fr: {
+                flag: "🇫🇷",
+                name: "Français",
+                subtitle: "Étudiant en Administration des Affaires",
+                profile: "Profil",
+                profileText: "Je suis un étudiant en commerce motivé et axé sur les résultats, poursuivant actuellement un bachelor en administration des affaires à l'Université d'économie de Prague (VŠE).",
+                workExperience: "Expérience Professionnelle",
+                education: "Éducation",
+                languages: "Langues",
+                skills: "Compétences",
+                certifications: "Certifications",
+                sendMessage: "Envoyer le Message",
+                navProfile: "Profil",
+                navExperience: "Expérience",
+                navEducation: "Éducation",
+                contact: "Contact"
             }
         };
 
@@ -1483,40 +1768,63 @@
             type();
         }
 
-        function switchLanguage(lang) {
-            // Update active button
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                if (btn.id === 'themeToggle') return; // Skip dark mode toggle
+        // Dropdown Logic
+        function toggleLanguageMenu() {
+            const menu = document.getElementById('langMenu');
+            menu.classList.toggle('show');
+        }
 
-                btn.classList.remove('active');
-                if (btn.getAttribute('data-lang') === lang) {
-                    btn.classList.add('active');
+        // Close dropdown when clicking outside
+        window.onclick = function (event) {
+            if (!event.target.matches('.lang-toggle') && !event.target.closest('.lang-toggle')) {
+                const dropdowns = document.getElementsByClassName("lang-menu");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
                 }
-            });
+            }
+        }
 
-            // Update content
+        function switchLanguage(lang) {
             const t = translations[lang];
 
+            // Update Dropdown Button UI
+            document.getElementById('currentLangFlag').textContent = t.flag;
+            document.getElementById('currentLangName').textContent = t.name;
+
+            // Close menu
+            document.getElementById('langMenu').classList.remove('show');
+
+            // Update content
             // Handle typing animation for subtitle if language changes
             const subtitleEl = document.querySelector('.subtitle');
-            // Only animate if the text is actually different or on first load
-            if (subtitleEl.textContent !== t.subtitle + " " /* checks against text + cursor space potentially */) {
-                // Determine if we should animate (e.g., only on explicit switch or load)
-                // For smoother UX, let's just update text immediately without re-animating on lang switch
-                // UNLESS it's the initial load. 
-                // However, user requested typing animation. Let's re-animate on language switch for "wow" effect.
+            if (subtitleEl.textContent !== t.subtitle + " ") {
                 typeWriter(t.subtitle, subtitleEl, 30);
             }
 
-            document.querySelector('[data-translate="profile"]').textContent = t.profile;
+            // Update UI text
+            const elements = {
+                'profile': t.profile,
+                'workExperience': t.workExperience,
+                'education': t.education,
+                'languages': t.languages,
+                'skills': t.skills,
+                'certifications': t.certifications,
+                'sendMessage': t.sendMessage,
+                'navProfile': t.navProfile,
+                'navExperience': t.navExperience,
+                'navEducation': t.navEducation,
+                'contact': t.contact
+            };
+
+            for (let key in elements) {
+                const el = document.querySelector(`[data-translate="${key}"]`);
+                if (el) el.textContent = elements[key];
+            }
+
             document.querySelector('.bio').textContent = t.profileText;
-            document.querySelector('[data-translate="workExperience"]').textContent = t.workExperience;
-            document.querySelector('[data-translate="education"]').textContent = t.education;
-            document.querySelector('[data-translate="languages"]').textContent = t.languages;
-            document.querySelector('[data-translate="skills"]').textContent = t.skills;
-            document.querySelector('[data-translate="certifications"]').textContent = t.certifications;
-            const submitBtn = document.querySelector('[data-translate="sendMessage"]');
-            if (submitBtn) submitBtn.textContent = t.sendMessage;
 
             // Save preference
             localStorage.setItem('preferredLanguage', lang);
