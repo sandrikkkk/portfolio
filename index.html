@@ -502,7 +502,27 @@
 
         /* Skills & Languages - Sidebar Style */
         .sidebar-section {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-section:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Sticky Sidebar */
+        .right-column {
+            position: sticky;
+            top: 40px;
+            /* Adjust based on preference */
+            height: fit-content;
         }
 
         .skill-list,
@@ -512,48 +532,52 @@
             gap: 8px;
         }
 
+        /* Language Progress Bars */
         .sidebar-item {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 6px;
             font-size: 0.95rem;
             border-bottom: 1px solid #f0f0f0;
-            padding: 8px 4px 4px 4px;
-            border-radius: 4px;
+            padding: 12px 0;
             transition: all 0.2s ease;
         }
 
-        .sidebar-item:hover {
-            background-color: #f8f9fa;
-            padding-left: 8px;
+        .sidebar-item:last-child {
+            border-bottom: none;
         }
 
-        .sidebar-item strong {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        /* Proficiency Dots */
-        .prof-level {
+        .lang-header {
             display: flex;
-            gap: 4px;
+            justify-content: space-between;
             align-items: center;
         }
 
-        .prof-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
+        .lang-name {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .lang-level {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .progress-bg {
+            width: 100%;
+            height: 6px;
             background-color: var(--border-color);
-            transition: all 0.3s ease;
+            border-radius: 3px;
+            overflow: hidden;
         }
 
-        .prof-dot.filled {
-            background-color: var(--primary-color);
-        }
-
-        /* Hover effect for dots */
-        .sidebar-item:hover .prof-dot.filled {
+        .progress-fill {
+            height: 100%;
             background-color: var(--accent-color);
+            border-radius: 3px;
+            width: 0%;
+            /* Animate via JS */
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Interactive Skills Section */
@@ -995,50 +1019,64 @@
             <div class="sidebar-section">
                 <h2 class="section-title" data-translate="languages">Languages</h2>
                 <div class="lang-list">
+                    <!-- Italian -->
                     <div class="sidebar-item">
-                        <span>Italian</span>
-                        <div class="prof-level" title="Native/Expert (C2)">
-                            <span class="prof-dot filled"></span><span class="prof-dot filled"></span><span
-                                class="prof-dot filled"></span><span class="prof-dot filled"></span><span
-                                class="prof-dot filled"></span>
+                        <div class="lang-header">
+                            <span class="lang-name">Italian</span>
+                            <span class="lang-level">Native (C2)</span>
+                        </div>
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 100%;"></div>
                         </div>
                     </div>
+                    <!-- Slovak -->
                     <div class="sidebar-item">
-                        <span>Slovak</span>
-                        <div class="prof-level" title="Native/Expert (C2)">
-                            <span class="prof-dot filled"></span><span class="prof-dot filled"></span><span
-                                class="prof-dot filled"></span><span class="prof-dot filled"></span><span
-                                class="prof-dot filled"></span>
+                        <div class="lang-header">
+                            <span class="lang-name">Slovak</span>
+                            <span class="lang-level">Native (C2)</span>
+                        </div>
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 100%;"></div>
                         </div>
                     </div>
+                    <!-- English -->
                     <div class="sidebar-item">
-                        <span>English</span>
-                        <div class="prof-level" title="Advanced (C1)">
-                            <span class="prof-dot filled"></span><span class="prof-dot filled"></span><span
-                                class="prof-dot filled"></span><span class="prof-dot filled"></span><span
-                                class="prof-dot"></span>
+                        <div class="lang-header">
+                            <span class="lang-name">English</span>
+                            <span class="lang-level">Advanced (C1)</span>
+                        </div>
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 85%;"></div>
                         </div>
                     </div>
+                    <!-- Czech -->
                     <div class="sidebar-item">
-                        <span>Czech</span>
-                        <div class="prof-level" title="Advanced (C1)">
-                            <span class="prof-dot filled"></span><span class="prof-dot filled"></span><span
-                                class="prof-dot filled"></span><span class="prof-dot filled"></span><span
-                                class="prof-dot"></span>
+                        <div class="lang-header">
+                            <span class="lang-name">Czech</span>
+                            <span class="lang-level">Advanced (C1)</span>
+                        </div>
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 80%;"></div>
                         </div>
                     </div>
+                    <!-- Spanish -->
                     <div class="sidebar-item">
-                        <span>Spanish</span>
-                        <div class="prof-level" title="Intermediate (B1)">
-                            <span class="prof-dot filled"></span><span class="prof-dot filled"></span><span
-                                class="prof-dot"></span><span class="prof-dot"></span><span class="prof-dot"></span>
+                        <div class="lang-header">
+                            <span class="lang-name">Spanish</span>
+                            <span class="lang-level">Intermediate (B1)</span>
+                        </div>
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 40%;"></div>
                         </div>
                     </div>
+                    <!-- German -->
                     <div class="sidebar-item">
-                        <span>German</span>
-                        <div class="prof-level" title="Beginner (A2)">
-                            <span class="prof-dot filled"></span><span class="prof-dot"></span><span
-                                class="prof-dot"></span><span class="prof-dot"></span><span class="prof-dot"></span>
+                        <div class="lang-header">
+                            <span class="lang-name">German</span>
+                            <span class="lang-level">Beginner (A2)</span>
+                        </div>
+                        <div class="progress-bg">
+                            <div class="progress-fill" style="width: 25%;"></div>
                         </div>
                     </div>
                 </div>
@@ -1135,33 +1173,160 @@
             <div class="sidebar-section">
                 <h2 class="section-title" data-translate="certifications">Certifications</h2>
 
-                <div style="margin-bottom: 15px;">
-                    <div style="font-weight: 600; color: var(--primary-color);">Certificate in Advanced English C1
+                <!-- Cert Card Style -->
+                <style>
+                    .cert-item {
+                        border-bottom: 1px solid var(--border-color);
+                        padding: 15px 0;
+                    }
+
+                    .cert-item:last-child {
+                        border-bottom: none;
+                    }
+
+                    .cert-header {
+                        display: flex;
+                        gap: 12px;
+                        align-items: flex-start;
+                        margin-bottom: 8px;
+                    }
+
+                    .cert-icon {
+                        width: 40px;
+                        height: 40px;
+                        background: #f1f5f9;
+                        color: var(--primary-color);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 8px;
+                        flex-shrink: 0;
+                        font-weight: 700;
+                        font-size: 1.2rem;
+                    }
+
+                    .cert-info h4 {
+                        font-size: 0.95rem;
+                        margin-bottom: 2px;
+                        color: var(--primary-color);
+                    }
+
+                    .cert-info .issuer {
+                        font-size: 0.85rem;
+                        color: var(--text-color);
+                        display: block;
+                    }
+
+                    .cert-info .date {
+                        font-size: 0.8rem;
+                        color: var(--text-light);
+                    }
+
+                    .btn-credential {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 6px;
+                        padding: 6px 12px;
+                        border: 1px solid var(--border-color);
+                        border-radius: 20px;
+                        font-size: 0.8rem;
+                        font-weight: 500;
+                        color: var(--primary-color);
+                        margin-top: 8px;
+                        transition: all 0.2s;
+                        text-decoration: none;
+                    }
+
+                    .btn-credential:hover {
+                        background: #f8f9fa;
+                        border-color: var(--primary-color);
+                    }
+
+                    .cert-skills {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 6px;
+                        margin-top: 10px;
+                    }
+
+                    .cert-skill {
+                        font-size: 0.75rem;
+                        color: var(--text-light);
+                    }
+
+                    .cert-skill::after {
+                        content: "•";
+                        margin-left: 6px;
+                        color: var(--border-color);
+                    }
+
+                    .cert-skill:last-child::after {
+                        content: "";
+                    }
+                </style>
+
+                <div class="cert-item">
+                    <div class="cert-header">
+                        <div class="cert-icon">EN</div> <!-- Placeholder Icon -->
+                        <div class="cert-info">
+                            <h4>Certificate in Advanced English C1</h4>
+                            <span class="issuer">Cambridge University Press & Assessment</span>
+                            <span class="date">Issued Apr 2025</span>
+                        </div>
                     </div>
-                    <div style="font-size: 0.9rem; color: #666; font-style: italic;">Cambridge University Press &
-                        Assessment</div>
-                    <div style="font-size: 0.85rem; margin-top: 2px;">Apr 2025</div>
+                    <a href="#" class="btn-credential">Show credential ↗</a>
+                    <div class="cert-skills">
+                        <span class="cert-skill">English as a Second Language</span>
+                    </div>
                 </div>
 
-                <div style="margin-bottom: 15px;">
-                    <div style="font-weight: 600; color: var(--primary-color);">Career Essentials in Generative AI
+                <div class="cert-item">
+                    <div class="cert-header">
+                        <div class="cert-icon">AI</div>
+                        <div class="cert-info">
+                            <h4>Career Essentials in Generative AI</h4>
+                            <span class="issuer">Microsoft</span>
+                            <span class="date">Issued Oct 2025</span>
+                        </div>
                     </div>
-                    <div style="font-size: 0.9rem; color: #666; font-style: italic;">Microsoft</div>
-                    <div style="font-size: 0.85rem; margin-top: 2px;">Oct 2025</div>
+                    <a href="#" class="btn-credential">Show credential ↗</a>
+                    <div class="cert-skills">
+                        <span class="cert-skill">Generative AI</span>
+                        <span class="cert-skill">Prompt Engineering</span>
+                        <span class="cert-skill">Copilot</span>
+                    </div>
                 </div>
 
-                <div style="margin-bottom: 15px;">
-                    <div style="font-weight: 600; color: var(--primary-color);">Leadership Foundations</div>
-                    <div style="font-size: 0.9rem; color: #666; font-style: italic;">Project Management Institute
+                <div class="cert-item">
+                    <div class="cert-header">
+                        <div class="cert-icon">PM</div>
+                        <div class="cert-info">
+                            <h4>Leadership Foundations</h4>
+                            <span class="issuer">Project Management Institute</span>
+                            <span class="date">Issued Oct 2025</span>
+                        </div>
                     </div>
-                    <div style="font-size: 0.85rem; margin-top: 2px;">Oct 2025</div>
+                    <a href="#" class="btn-credential">Show credential ↗</a>
+                    <div class="cert-skills">
+                        <span class="cert-skill">Leadership</span>
+                        <span class="cert-skill">Team Management</span>
+                    </div>
                 </div>
 
-                <div style="margin-bottom: 15px;">
-                    <div style="font-weight: 600; color: var(--primary-color);">Project Management Foundations</div>
-                    <div style="font-size: 0.9rem; color: #666; font-style: italic;">National Association of State
-                        Boards of Accountancy (NASBA)</div>
-                    <div style="font-size: 0.85rem; margin-top: 2px;">Oct 2025</div>
+                <div class="cert-item">
+                    <div class="cert-header">
+                        <div class="cert-icon">PM</div>
+                        <div class="cert-info">
+                            <h4>Project Management Foundations</h4>
+                            <span class="issuer">NASBA</span>
+                            <span class="date">Issued Oct 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-credential">Show credential ↗</a>
+                    <div class="cert-skills">
+                        <span class="cert-skill">Project Planning</span>
+                        <span class="cert-skill">Estimation</span>
+                    </div>
                 </div>
             </div>
 
@@ -1407,9 +1572,30 @@
                 });
             }, observerOptions);
 
-            document.querySelectorAll('section, .timeline-item').forEach(el => {
+            document.querySelectorAll('section, .timeline-item, .sidebar-section').forEach(el => {
                 el.classList.add('reveal');
                 observer.observe(el);
+            });
+
+            // Observe Progress Bars independently
+            const barObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        // Animate width
+                        el.style.width = el.getAttribute('data-width');
+                        barObserver.unobserve(el);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.progress-fill').forEach(el => {
+                // Store original width from inline style
+                const targetWidth = el.style.width;
+                // Set to 0 initially
+                el.style.width = '0%';
+                el.setAttribute('data-width', targetWidth);
+                barObserver.observe(el);
             });
         });
     </script>
