@@ -1930,6 +1930,10 @@
             </a>
 
         </div>
+        <div class="footer-info">
+            <span>Based in Prague 🇨🇿</span>
+            <span>Local Time: <span id="localTime">--:--</span></span>
+        </div>
         <p>&copy; 2026 Alessandro Giovanni Codecà. All rights reserved.</p>
     </footer>
 
@@ -2590,6 +2594,17 @@
                 staggerObserver.observe(group);
             });
         }
+
+        // Live Time
+        function updateTime() {
+            const timeEl = document.getElementById('localTime');
+            if (timeEl) {
+                const now = new Date();
+                timeEl.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Prague' });
+            }
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
 
         // Active Navigation Logic
         function initActiveNav() {
